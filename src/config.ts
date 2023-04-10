@@ -8,8 +8,8 @@ const configs = {
     origin: 'http://localhost:3001/api',
   },
   production: {
-    apiUrl: 'https://api.petk.simmsreeve.com',
-    origin: 'https://petk.simmsreeve.com/api',
+    apiUrl: 'https://api.alphaiota.io',
+    origin: 'https://alphaiota.io/api',
   },
 }
 

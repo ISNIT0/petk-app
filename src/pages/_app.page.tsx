@@ -21,7 +21,7 @@ export default function App({ Component, pageProps }: AppProps) {
             referrerPolicy="no-referrer-when-downgrade"
           />
         </noscript>
-        <title>PETK</title>
+        <title>Alpha Iota</title>
       </Head>
 
       <main className={styles.main}>
