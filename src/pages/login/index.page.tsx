@@ -7,32 +7,10 @@ import { Input } from "components/Form/Input";
 import { Label } from "components/Form/Label";
 import { api } from "@/lib/http";
 import styles from "./login.module.css";
-import { withIronSessionSsr } from "iron-session/next";
-import { config } from "@/config";
-import { ironConfig } from "pages/api/_utils/ironConfig";
+import { useUser } from "@/lib/useUser";
 
-interface LoginProps {
-  user: any;
-}
-
-export const getServerSideProps = withIronSessionSsr(
-  async function getServerSideProps({ req }) {
-    const [user] = await Promise.all([
-      fetch(`${config.origin}/auth/me`, {
-        headers: {
-          authorization: `Bearer ${(req.session as any).access_token}`,
-        },
-      })
-        .then((res) => res.json())
-        .catch(() => null),
-    ]);
-    console.log({ user });
-    return { props: { user } };
-  },
-  ironConfig
-);
-
-const Login: NextPage<LoginProps> = ({ user }: LoginProps) => {
+const Login: NextPage = ({}) => {
+  const { user, refetch } = useUser();
   const router = useRouter();
   const queryEmail = router.query.email
     ? [router.query.email].flat().join("")
@@ -44,18 +22,19 @@ const Login: NextPage<LoginProps> = ({ user }: LoginProps) => {
   useEffect(() => {
     if (queryEmail && queryCode) {
       (async () => {
-        const orgId = prompt("Org Id");
+        const orgId = "unknown";
         const ret = (await api
           .url(`/auth/${orgId}/login`)
           .post({ email: queryEmail, code: queryCode })
           .json()) as { access_token: string };
 
-        localStorage["doubtful:jwt"] = ret.access_token;
+        localStorage["alphaiota:jwt"] = ret.access_token;
 
-        router.push("/");
+        refetch();
+        router.push("/profile");
       })();
     }
-  }, [queryEmail, queryCode, router]);
+  }, [queryEmail, queryCode, router, refetch]);
 
   if (user) {
     return (
@@ -75,7 +54,11 @@ const Login: NextPage<LoginProps> = ({ user }: LoginProps) => {
 
       <main className={`${styles.main} ${styles.loginMain}`}>
         <h1 className={styles.title}>
-          But first, you&apos;ve got to Log In...
+          You&apos;re about to make history.
+          <br />
+          <small style={{ fontSize: "60%" }}>
+            But first, you&apos;ve got to Login / Signup...
+          </small>
         </h1>
 
         <section>
@@ -88,7 +71,7 @@ const Login: NextPage<LoginProps> = ({ user }: LoginProps) => {
                 const formData = new FormData(ev.target as HTMLFormElement);
                 const code = formData.get("code")?.toString();
                 const formEmail = formData.get("email")?.toString() || email;
-                const orgId = prompt("Org ID");
+                const orgId = "unknown";
 
                 if (code) {
                   const ret = (await api
@@ -96,7 +79,7 @@ const Login: NextPage<LoginProps> = ({ user }: LoginProps) => {
                     .post({ email: formEmail, code })
                     .json()) as { access_token: string };
 
-                  localStorage["doubtful:jwt"] = ret.access_token;
+                  localStorage["alphaiota:jwt"] = ret.access_token;
 
                   router.push("/");
                 } else if (formEmail) {

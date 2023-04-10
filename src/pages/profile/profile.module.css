@@ -15,9 +15,6 @@
   max-width: 900px;
   margin: auto;
 }
-.main :global(label) {
-  color: white !important;
-}
 
 .wrapper {
   width: 350px;
@@ -30,7 +27,6 @@
   border-radius: 6px;
   padding: 8px 24px;
   border: none;
-  background: linear-gradient(93.74deg, #622f5b 9.47%, #7c3e97 100%);
   font-weight: 600;
   font-size: 14px;
   line-height: 150%;

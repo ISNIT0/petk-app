@@ -5,38 +5,14 @@ import { useRouter } from "next/router";
 import { useEffect, useState } from "react";
 import { api } from "@/lib/http";
 import styles from "./profile.module.css";
-import { ironConfig } from "../api/_utils/ironConfig";
-import { config } from "@/config";
 import { FormGroup } from "components/Form/FormGroup";
 import { Label } from "components/Form/Label";
 import { Input } from "components/Form/Input";
+import { useUser } from "@/lib/useUser";
 
-interface ProfileProps {
-  user: any;
-}
-
-export const getServerSideProps = withIronSessionSsr(
-  async function getServerSideProps({ req }) {
-    const [user] = await Promise.all([
-      fetch(`${config.origin}/auth/me`, {
-        headers: {
-          authorization: `Bearer ${(req.session as any).access_token}`,
-        },
-      })
-        .then((res) => res.json())
-        .catch(() => null),
-    ]);
-
-    if (user) {
-      return { props: { user } };
-    } else {
-      return { redirect: { destination: "/", permanent: false } };
-    }
-  },
-  ironConfig
-);
-
-const Profile: NextPage<ProfileProps> = ({ user }: ProfileProps) => {
+const Profile: NextPage = ({}) => {
+  const { user, refetch } = useUser();
+  console.log(user);
   const router = useRouter();
   const [isPending, setIsPending] = useState(false);
   const [generatedAvatar, setGeneratedAvatar] = useState<any>();
@@ -78,7 +54,9 @@ const Profile: NextPage<ProfileProps> = ({ user }: ProfileProps) => {
                   .post({ name, avatarUrl })
                   .json();
 
-                if (!user.name) {
+                refetch();
+
+                if (!user?.name) {
                   router.push("/");
                 }
               } finally {
@@ -86,12 +64,13 @@ const Profile: NextPage<ProfileProps> = ({ user }: ProfileProps) => {
               }
             }}
           >
+            <br />
             <FormGroup>
-              <Label name="name" label="Your Name" />
+              <Label name="name" label="Your name" />
               <Input
                 name={"name"}
                 placeholder={"Your name..."}
-                defaultValue={user.name}
+                defaultValue={user?.name}
                 onChange={(name) => {
                   setUserName(name);
                 }}
@@ -107,7 +86,7 @@ const Profile: NextPage<ProfileProps> = ({ user }: ProfileProps) => {
               <Input
                 name={"avatarUrl"}
                 placeholder={"A url... or we'll generate an avatar"}
-                defaultValue={user.avatarUrl}
+                defaultValue={user?.avatarUrl}
                 onChange={() => {}}
                 disabled={false}
                 type="url"

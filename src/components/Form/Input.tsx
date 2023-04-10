@@ -5,7 +5,7 @@ import { HTMLInputTypeAttribute } from 'react'
 interface InputProps {
   name: string
   placeholder?: string
-  value?: string
+  // value?: string
   defaultValue?: string
   onChange(val: string): void
   onBlur?: (e: any) => void
@@ -18,7 +18,7 @@ interface InputProps {
 export const Input = ({
   name,
   placeholder,
-  value,
+  // value,
   defaultValue,
   onChange,
   onBlur,
@@ -35,7 +35,7 @@ export const Input = ({
       id={name}
       placeholder={placeholder}
       defaultValue={defaultValue}
-      value={value}
+      // value={value}
       onChange={(ev: any) => onChange(ev.target.value)}
       disabled={disabled}
       required={required}

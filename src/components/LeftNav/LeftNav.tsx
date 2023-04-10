@@ -1,3 +1,4 @@
+/* eslint-disable @next/next/no-img-element */
 import styles from "./LeftNav.module.scss";
 import cx from "classnames";
 import LabsIcon from "public/icons/labs.svg";
@@ -15,9 +16,12 @@ import PremiumIcon from "public/icons/premium.svg";
 import TestSessionIcon from "public/icons/test-session.svg";
 import LikeIcon from "public/icons/like.svg";
 import ErrorIcon from "public/icons/error.svg";
+import SignOutIcon from "public/icons/sign-out.svg";
+import UserAvatarCircleIcon from "public/icons/user-avatar-circle.svg";
 import { useRouter } from "next/router";
 import Link from "next/link";
 import { Todo } from "../Todo/Todo";
+import { useUser } from "@/lib/useUser";
 
 type NavStructure = {
   path: string;
@@ -117,6 +121,7 @@ const navStructure: NavStructure = [
 ];
 
 export const LeftNav = () => {
+  const { user } = useUser();
   const router = useRouter();
   const { pathname } = router;
 
@@ -125,16 +130,52 @@ export const LeftNav = () => {
     ({ path }) => path === pageBasePath
   );
 
+  const navBottomItems: NavStructure = [
+    ...(user
+      ? [
+          { path: "/logout", label: "Logout", icon: <SignOutIcon /> },
+          {
+            path: "/profile",
+            label: "Profile",
+            icon: user.avatarUrl ? (
+              <img src={user.avatarUrl} alt={user.name} />
+            ) : (
+              <UserAvatarCircleIcon />
+            ),
+          },
+        ]
+      : [{ path: "/login", label: "Login", icon: <UserAvatarCircleIcon /> }]),
+  ];
+
   return (
     <nav className={cx(styles.nav)}>
       <section className={cx(styles.primaryNav)}>
-        <div className={cx(styles.logo)}>
-          <Link href="/">
-            <LogoIcon />
-          </Link>
+        <div>
+          <div className={cx(styles.logo)}>
+            <Link href="/">
+              <LogoIcon />
+            </Link>
+          </div>
+          <div className={cx(styles.topLinks)}>
+            {Object.values(navStructure).map(({ path, icon }) => {
+              const isActive = pathname.startsWith(path);
+
+              return (
+                <Link
+                  href={path}
+                  key={path}
+                  className={cx(styles.primaryNavLink, {
+                    [styles.active]: isActive,
+                  })}
+                >
+                  {icon}
+                </Link>
+              );
+            })}
+          </div>
         </div>
-        <div className={cx(styles.topLinks)}>
-          {Object.values(navStructure).map(({ path, icon }) => {
+        <div className={styles.topLinks}>
+          {Object.values(navBottomItems).map(({ path, icon }) => {
             const isActive = pathname.startsWith(path);
 
             return (
@@ -153,28 +194,41 @@ export const LeftNav = () => {
       </section>
       {pageNavStructure && (
         <section className={cx(styles.pageNav)}>
-          <div className={cx(styles.pageNavHeader)}>
-            <h1>{pageNavStructure.label}</h1>
+          <div>
+            <div className={cx(styles.pageNavHeader)}>
+              <h1>{pageNavStructure.label}</h1>
+            </div>
+            <ul className={cx(styles.pageNavLinks)}>
+              {pageNavStructure.subStructure?.map(
+                ({ path, label, icon, todo }) => {
+                  const isActive = pathname.startsWith(
+                    `${pageBasePath}${path}`
+                  );
+                  return (
+                    <li key={path}>
+                      <Link
+                        href={pageBasePath + path}
+                        className={cx({ [styles.active]: isActive })}
+                      >
+                        {icon}
+                        {label}
+                        <div style={{ float: "right" }}>{todo && <Todo />}</div>
+                      </Link>
+                    </li>
+                  );
+                }
+              )}
+            </ul>
           </div>
-          <ul className={cx(styles.pageNavLinks)}>
-            {pageNavStructure.subStructure?.map(
-              ({ path, label, icon, todo }) => {
-                const isActive = pathname.startsWith(`${pageBasePath}${path}`);
-                return (
-                  <li key={path}>
-                    <Link
-                      href={pageBasePath + path}
-                      className={cx({ [styles.active]: isActive })}
-                    >
-                      {icon}
-                      {label}
-                      <div style={{ float: "right" }}>{todo && <Todo />}</div>
-                    </Link>
-                  </li>
-                );
-              }
-            )}
-          </ul>
+          <div>
+            <ul className={styles.pageNavLinks}>
+              <li style={{ textAlign: "center" }}>
+                <a href="https://twitter.com/isnit0" target="_blank">
+                  <small>Made by Joe</small>
+                </a>
+              </li>
+            </ul>
+          </div>
           <div className={cx(styles.navShadow)}></div>
         </section>
       )}

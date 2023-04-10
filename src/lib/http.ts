@@ -2,7 +2,7 @@ import wretch from 'wretch'
 import { config } from '../config'
 
 function getToken() {
-  return localStorage['doubtful:jwt']
+  return localStorage['alphaiota:jwt']
 }
 
 export const api = wretch()

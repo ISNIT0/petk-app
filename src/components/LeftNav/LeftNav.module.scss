@@ -11,6 +11,7 @@
   height: 100%;
   display: flex;
   flex-direction: column;
+  justify-content: space-between;
 
   .logo {
     display: block;
@@ -43,6 +44,11 @@
       height: 24px;
     }
 
+    & > img {
+      width: 32px;
+      height: 32px;
+    }
+
     &.active {
       opacity: 1;
     }
@@ -54,6 +60,9 @@
   background: #f4f5f7;
   width: 240px;
   height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
   .navShadow {
     position: absolute;
     height: 100%;

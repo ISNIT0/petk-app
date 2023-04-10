@@ -10,9 +10,6 @@
 .main {
   width: 350px;
 }
-.main :global(label) {
-  color: white !important;
-}
 
 @media (max-width: 768px) {
   .main {
@@ -27,7 +24,6 @@
   font-size: 32px;
   line-height: 100%;
   letter-spacing: -0.005em;
-  color: #ffffff;
   margin-bottom: 20px;
 }
 
@@ -42,7 +38,7 @@
   border-radius: 6px;
   padding: 8px 24px;
   border: none;
-  background: linear-gradient(93.74deg, #622f5b 9.47%, #7c3e97 100%);
+  /* background: linear-gradient(93.74deg, #622f5b 9.47%, #7c3e97 100%); */
   font-weight: 600;
   font-size: 14px;
   line-height: 150%;
