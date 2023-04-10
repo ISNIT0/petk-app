@@ -1,0 +1,41 @@
+.container {
+  display: flex;
+  flex-direction: row;
+  position: relative;
+  border: 2px solid #dfe1e6;
+  border-radius: 3px;
+}
+
+.inferenceContainer {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  overflow-x: auto;
+  padding-top: 30px;
+}
+
+.inferences {
+  width: 100%;
+  height: 300px;
+  overflow-y: auto;
+  padding-bottom: 100px;
+}
+
+.inferenceInput {
+  display: flex;
+  flex-direction: row;
+  padding: 8px;
+}
+
+.inferenceSettings {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  padding: 6px;
+  background: white;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}

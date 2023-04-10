@@ -1,0 +1,21 @@
+.container {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+
+  & > div {
+    width: 100%;
+  }
+
+  svg {
+    width: 80%;
+    max-width: 240px;
+  }
+
+  p {
+    max-width: 500px;
+    margin: 0 auto;
+  }
+}

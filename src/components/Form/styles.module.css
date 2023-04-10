@@ -1,0 +1,174 @@
+.label {
+  font-family: 'Inter', sans-serif;
+  font-style: normal;
+  font-weight: 500;
+  font-size: 12px;
+  line-height: 150%;
+  letter-spacing: 0.03em;
+  text-transform: uppercase;
+  margin-bottom: 4px;
+  color: rgba(0, 0, 0, 0.58);
+  display: block;
+}
+
+.titleInput {
+  padding: 8px;
+  width: 100%;
+  border: 2px solid rgba(0, 0, 0, 0.17);
+  border-radius: 4px;
+  transition: 0.2s;
+  background: white;
+  color: black;
+  outline: none;
+  font-size: 28px;
+  font-family: 'Inter', sans-serif;
+  resize: none;
+  min-height: 86px;
+  max-height: 100px;
+}
+
+.titleInput:focus {
+  border: 2px solid #ac6dc9;
+}
+
+.titleInput {
+  font-family: 'Charter';
+  font-size: 28px;
+  padding: 8px;
+  width: 100%;
+  border: 1px solid rgba(0, 0, 0, 0.17);
+  border-radius: 4px;
+  transition: 0.2s;
+  background: white;
+  color: black;
+  outline: none;
+}
+
+.titleInput:focus {
+  border: 2px solid #ac6dc9;
+}
+
+.formGroup {
+  margin-top: 16px;
+}
+.formGroup:first-child {
+  margin-top: 0;
+}
+
+.dateContainer {
+  display: flex;
+  position: relative;
+}
+
+.picker input {
+  border: none;
+}
+
+.react-datepicker-wrapper {
+  width: fit-content !important;
+}
+
+.dateTimePicker {
+  font-family: 'Inter', sans-serif;
+  line-height: 20px;
+  width: fit-content;
+  display: flex;
+  flex-direction: row-reverse;
+  gap: 7px;
+}
+
+.dateContainer input[type='datetime-local']::-webkit-calendar-picker-indicator {
+  background-image: url('../../../public/icons/calendar-pink.svg');
+}
+
+.dateContainer input[type='datetime-local']::-webkit-datetime-edit {
+  max-width: 123px !important;
+  display: flex;
+  justify-content: center;
+}
+
+.dateContainerDisabled
+  input[type='datetime-local']::-webkit-calendar-picker-indicator {
+  display: none;
+}
+
+.dateContainerActive
+  input[type='datetime-local']::-webkit-calendar-picker-indicator {
+  background-image: url('../../../public/icons/calendar.svg');
+}
+
+.dateTimePicker::placeholder {
+  color: white;
+  width: fit-content;
+}
+
+.pillButton,
+.dateTimePicker {
+  padding: 4px 12px;
+  height: 28px;
+  border: 1px solid rgba(0, 0, 0, 0.17);
+  border-radius: 19px;
+  transition: 0.2s;
+  background: none;
+  color: #8945a1;
+  margin-right: 8px;
+  margin-bottom: 2px;
+  cursor: pointer;
+}
+
+.pillButton:disabled,
+.dateTimePicker:disabled {
+  color: lightgray;
+  cursor: not-allowed;
+}
+
+.activePillButton {
+  background: #8945a1;
+  border: 1px solid rgba(0, 0, 0, 0.17);
+  color: white;
+}
+
+.activeDateTimePicker {
+  background: #8945a1;
+  border: 1px solid rgba(0, 0, 0, 0.17);
+  color: white;
+}
+
+.disabledDateTimePicker {
+  color: lightgray;
+  cursor: not-allowed;
+}
+
+.input {
+  width: 100%;
+  background-color: rgba(255, 255, 255, 0.08);
+  height: 40px;
+  transition: 0.2s;
+  border: 1px solid rgba(0, 0, 0, 0.17);
+  border-radius: 4px;
+  font-family: 'Inter', sans-serif;
+  font-style: normal;
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 150%;
+  color: inherit;
+  padding: 12px 10px;
+}
+
+.input::placeholder {
+  font-size: 14px;
+  vertical-align: center;
+  opacity: 0.8;
+}
+
+.input:focus {
+  border: 1px solid rgba(112, 167, 198, 1);
+  outline: none;
+}
+
+.calendarIcon {
+  position: absolute;
+  cursor: not-allowed;
+  top: 5px;
+  left: 15px;
+}

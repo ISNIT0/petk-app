@@ -1,0 +1,14 @@
+.testing {
+  display: flex;
+  flex-direction: column;
+  overflow-x: auto;
+  margin-top: 50px;
+}
+
+.templateSettings {
+  display: flex;
+  flex-direction: row;
+  .form-group {
+    flex: 1 1 auto;
+  }
+}

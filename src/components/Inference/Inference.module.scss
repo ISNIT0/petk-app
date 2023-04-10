@@ -1,0 +1,42 @@
+.inference {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
+.prompt,
+.response {
+  border-bottom: 1px solid #dededf;
+  width: 100%;
+}
+
+.prompt {
+}
+
+.response {
+  background: #f7f7f8;
+}
+
+.inferenceContent {
+  padding: 34px;
+  margin: 0 auto;
+  max-width: 700px;
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+
+  .promptBody {
+    font-family: inherit;
+    white-space: pre-wrap;
+  }
+}
+
+.profile {
+  flex-shrink: 0;
+  width: 50px;
+  & > img {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+  }
+}

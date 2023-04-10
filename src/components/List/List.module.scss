@@ -1,0 +1,20 @@
+.list {
+  li {
+    &:first-child {
+      border-top: 1px solid #dededf;
+    }
+    padding: 8px 12px;
+    border-bottom: 1px solid #dededf;
+    width: 100%;
+    color: #0052cc;
+    list-style: none;
+    .subTitle {
+      color: #6b778c;
+      text-overflow: ellipsis;
+      display: block;
+      width: 100%;
+      white-space: nowrap;
+      overflow-x: hidden;
+    }
+  }
+}
