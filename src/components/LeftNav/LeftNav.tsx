@@ -49,8 +49,9 @@ const navStructure: NavStructure = [
     subStructure: [
       { path: "/chat", icon: <QuestionsIcon />, label: "Chat" },
       { path: "/instruction", icon: <QueuesIcon />, label: "Instruction" },
+      { path: "/tools", icon: <BuildsIcon />, label: "Tools" },
+      { path: "/marketplace", icon: <MarketplaceIcon />, label: "Marketplace" },
       { path: "/tests", icon: <TestSessionIcon />, label: "Tests", todo: true },
-      { path: "/tools", icon: <BuildsIcon />, label: "Tools", todo: true },
       {
         path: "/enrichment",
         icon: <DocumentIcon />,

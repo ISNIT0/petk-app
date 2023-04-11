@@ -56,9 +56,7 @@ const Profile: NextPage = ({}) => {
 
                 refetch();
 
-                if (!user?.name) {
-                  router.push("/");
-                }
+                router.push("/");
               } finally {
                 setIsPending(false);
               }

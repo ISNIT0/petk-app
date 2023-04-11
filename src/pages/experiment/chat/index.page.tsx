@@ -19,6 +19,7 @@ export interface IInference {
   response: string;
   type: "automated" | "user";
   profile?: IProfile;
+  toolProfile?: { name: string; provider: string; avatarUrl: string };
 }
 
 export interface ISession {

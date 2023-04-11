@@ -14,6 +14,7 @@ import {
 } from "@/components/InferenceSettings/InferenceSettings";
 import DotLoader from "react-spinners/DotLoader";
 import { IInference, ISession } from "@/pages/experiment/chat/index.page";
+import { ITool } from "@/pages/prompts/tools.page";
 
 interface IInferenceResponse {
   sessionId: string;
@@ -36,6 +37,7 @@ export const SessionPage = ({
       promptTemplate: undefined,
     });
 
+  const { data: tools } = useRequest<ITool[]>(`/tool/all`);
   const { data: session, refetch: refetchSession } = useRequest<ISession>(
     `/session/${sessionType}/${sessionId}`,
     "GET",
@@ -62,6 +64,7 @@ export const SessionPage = ({
       const ret = await submitPrompt({
         ...inferenceSettings,
         prompt,
+        tools: tools?.map((tool) => tool.id),
       });
       if (sessionId === "new" && ret) {
         router.replace(`/experiment/${sessionType}/${ret.sessionId}`);
@@ -71,6 +74,7 @@ export const SessionPage = ({
     [
       submitPrompt,
       inferenceSettings,
+      tools,
       sessionId,
       refetchSession,
       refetchTranscript,

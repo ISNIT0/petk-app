@@ -3,12 +3,13 @@ import styles from "./Inference.module.scss";
 import cx from "classnames";
 
 export const Inference = ({ inference }: { inference: IInference }) => {
+  const profile = inference.toolProfile || inference.profile;
   return (
     <div className={cx(styles.inference)}>
       <div className={cx(styles.prompt)}>
         <div className={cx(styles.inferenceContent)}>
           <div className={cx(styles.profile)}>
-            {inference.profile && <img src={inference.profile?.avatarUrl} />}
+            {profile && <img src={profile?.avatarUrl} />}
           </div>
           <div className={cx(styles.promptBody)}>{inference.prompt}</div>
         </div>

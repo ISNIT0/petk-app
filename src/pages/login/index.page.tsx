@@ -81,7 +81,7 @@ const Login: NextPage = ({}) => {
 
                   localStorage["alphaiota:jwt"] = ret.access_token;
 
-                  router.push("/");
+                  router.push("/profile");
                 } else if (formEmail) {
                   await api
                     .url(`/auth/${orgId}/login`)
