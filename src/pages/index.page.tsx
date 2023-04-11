@@ -36,11 +36,6 @@ export default function Home() {
                     </Link>
                   </li>
                   <li>
-                    <Link href="/models/marketplace">
-                      Connect to your OpenAI account
-                    </Link>
-                  </li>
-                  <li>
                     <Link href="/prompts/marketplace">
                       Enable some Instruction Model tools
                     </Link>
@@ -51,7 +46,7 @@ export default function Home() {
                     </Link>
                   </li>
                   <li>
-                    <Link href="/prompts/instruction">Modify Pre-Prompts</Link>
+                    <Link href="/prompts/instruction">Create your own Pre-Prompts</Link>
                   </li>
                 </ol>
               </>
