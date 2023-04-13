@@ -28,6 +28,15 @@ export const MarketplacePage = () => {
       subTitle: "Connect directly to a Sagemaker Endpoint",
       href: "#",
     },
+    {
+      title: (
+        <>
+          Hugging Face <Todo />
+        </>
+      ),
+      subTitle: "Connect directly to a Hugging Face model",
+      href: "#",
+    },
   ];
   return (
     <>
