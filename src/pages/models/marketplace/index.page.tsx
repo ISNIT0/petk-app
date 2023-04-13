@@ -36,7 +36,7 @@ export const MarketplacePage = () => {
           <PageHeader
             title="Available Integrations"
             actionLabel="Request Integration"
-            actionHref="/about"
+            actionHref="https://chat.whatsapp.com/GiqgXHPZvTBFn9fv2O0gZZ"
           />
           <List items={listItems || []} />
         </>

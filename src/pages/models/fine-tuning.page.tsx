@@ -11,7 +11,7 @@ export const FineTuningPage = () => {
         </>
       }
       actionLabel="Get in touch"
-      actionHref="/about"
+      actionHref="https://chat.whatsapp.com/GiqgXHPZvTBFn9fv2O0gZZ"
     />
   );
 };

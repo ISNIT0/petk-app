@@ -1,4 +1,5 @@
 import { EmptyStatePage } from "@/components/EmptyStatePage/EmptyStatePage";
+import APIKeysPage from "../api-keys/index.page";
 
 export const ExperimentAPIsPage = () => {
   return (
@@ -6,9 +7,9 @@ export const ExperimentAPIsPage = () => {
       title="LLM Inference via API"
       description={<>Available to those who ask nicely...</>}
       actionLabel="Get in touch"
-      actionHref="/about"
+      actionHref="https://chat.whatsapp.com/GiqgXHPZvTBFn9fv2O0gZZ"
     />
   );
 };
 
-export default ExperimentAPIsPage;
+export default APIKeysPage;

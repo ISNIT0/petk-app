@@ -6,7 +6,7 @@ export const AuditHomePage = () => {
       title="Full Auditing"
       description={<>Available to those who ask nicely...</>}
       actionLabel="Get in touch"
-      actionHref="/about"
+      actionHref="https://chat.whatsapp.com/GiqgXHPZvTBFn9fv2O0gZZ"
     />
   );
 };

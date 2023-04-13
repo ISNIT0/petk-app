@@ -91,22 +91,20 @@ const navStructure: NavStructure = [
         path: "/chat",
         icon: <QuestionsIcon />,
         label: "Chat",
-        todo: true,
       },
       {
         path: "/instruction",
         icon: <QueuesIcon />,
         label: "Instruction",
-        todo: true,
       },
       {
         path: "/api",
         icon: <CodeIcon />,
-        label: "API Logs",
+        label: "APIs",
         todo: true,
       },
       {
-        path: "/api",
+        path: "/rlhf",
         icon: <LikeIcon />,
         label: "RLHF",
         todo: true,
@@ -115,7 +113,6 @@ const navStructure: NavStructure = [
         path: "/warnings",
         icon: <ErrorIcon />,
         label: "Warnings",
-        todo: true,
       },
     ],
   },
@@ -134,6 +131,7 @@ export const LeftNav = () => {
   const navBottomItems: NavStructure = [
     ...(user
       ? [
+          { path: "/api-keys", label: "API Keys", icon: <CodeIcon /> },
           { path: "/logout", label: "Logout", icon: <SignOutIcon /> },
           {
             path: "/profile",

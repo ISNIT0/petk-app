@@ -24,9 +24,11 @@ interface IInferenceResponse {
 export const SessionPage = ({
   sessionType,
   sessionId,
+  readOnly,
 }: {
   sessionType: "chat" | "instruction";
   sessionId: string;
+  readOnly?: boolean;
 }) => {
   const router = useRouter();
   const inferencesContainerElRef = useRef<HTMLDivElement | null>();
@@ -35,9 +37,9 @@ export const SessionPage = ({
     useState<IInferenceSettings>({
       model: undefined,
       promptTemplate: undefined,
+      tools: [],
     });
 
-  const { data: tools } = useRequest<ITool[]>(`/tool/all`);
   const { data: session, refetch: refetchSession } = useRequest<ISession>(
     `/session/${sessionType}/${sessionId}`,
     "GET",
@@ -64,7 +66,6 @@ export const SessionPage = ({
       const ret = await submitPrompt({
         ...inferenceSettings,
         prompt,
-        tools: tools?.map((tool) => tool.id),
       });
       if (sessionId === "new" && ret) {
         router.replace(`/experiment/${sessionType}/${ret.sessionId}`);
@@ -74,7 +75,6 @@ export const SessionPage = ({
     [
       submitPrompt,
       inferenceSettings,
-      tools,
       sessionId,
       refetchSession,
       refetchTranscript,
@@ -108,6 +108,7 @@ export const SessionPage = ({
               isRaw={isRaw}
               setIsRaw={setIsRaw}
               sessionType={sessionType}
+              readOnly={readOnly}
             />
           </div>
           <div></div>
@@ -139,7 +140,7 @@ export const SessionPage = ({
             })}
           </div>
         )}
-        <InferenceInput onSubmit={onSubmit} />
+        {!readOnly ? <InferenceInput onSubmit={onSubmit} /> : null}
       </section>
     </>
   );

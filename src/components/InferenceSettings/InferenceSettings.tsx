@@ -2,10 +2,12 @@ import styles from "./InferenceSettings.module.scss";
 import cx from "classnames";
 import { useRequest } from "@/lib/useRequest";
 import { useEffect } from "react";
+import { ITool } from "@/pages/prompts/tools.page";
 
 export interface IInferenceSettings {
   model?: string;
   promptTemplate?: string;
+  tools?: string[];
 }
 
 export type ITestInferenceSettings = IInferenceSettings & {
@@ -48,6 +50,7 @@ export const InferenceSettings = ({
   setIsRaw,
   sessionType,
   hideTemplateSelect,
+  readOnly,
 }: {
   inferenceSettings: IInferenceSettings;
   setInferenceSettings: (settings: IInferenceSettings) => void;
@@ -55,11 +58,17 @@ export const InferenceSettings = ({
   setIsRaw?: (isRaw: boolean) => void;
   sessionType: "chat" | "instruction";
   hideTemplateSelect?: boolean;
+  readOnly?: boolean;
 }) => {
   const { data: _models } = useRequest<IModel[]>(`/model/all`);
   const { data: _templates } =
     useRequest<IPromptTemplate[]>(`/prompt-template/all`);
-  const models = _models?.filter((model) => model.type === sessionType);
+
+  const { data: tools } = useRequest<ITool[]>(`/tool/all`);
+
+  const models = _models
+    ?.filter((model) => model.type === sessionType)
+    .sort((a, b) => (a.name < b.name ? 1 : -1));
   const templates = _templates?.filter(
     (template) => template.promptType === sessionType
   );
@@ -73,6 +82,7 @@ export const InferenceSettings = ({
     setInferenceSettings({
       model: inferenceSettings.model || defaultModel?.id,
       promptTemplate: inferenceSettings.promptTemplate || defaultTemplate?.id,
+      tools: tools?.map((tool) => tool.id),
     });
   }, [
     defaultModel?.id,
@@ -80,6 +90,7 @@ export const InferenceSettings = ({
     hasLoaded,
     inferenceSettings.model,
     inferenceSettings.promptTemplate,
+    tools,
     setInferenceSettings,
   ]);
 
@@ -88,6 +99,7 @@ export const InferenceSettings = ({
       <select
         defaultValue={defaultModel?.id}
         value={inferenceSettings.model}
+        disabled={readOnly}
         onChange={(ev) => {
           setInferenceSettings({
             ...inferenceSettings,
@@ -110,6 +122,7 @@ export const InferenceSettings = ({
       </select>
       {!hideTemplateSelect ? (
         <select
+          disabled={readOnly}
           defaultValue={defaultTemplate?.id}
           value={inferenceSettings.promptTemplate}
           onChange={(ev) => {
