@@ -2,6 +2,7 @@ import { IModel } from "@/components/InferenceSettings/InferenceSettings";
 import { List } from "@/components/List/List";
 import { Page } from "@/components/Page/Page";
 import { PageHeader } from "@/components/PageHeader/PageHeader";
+import { Tag } from "@/components/Tag/Tag";
 import { useRequest } from "@/lib/useRequest";
 import { IInference } from "@/pages/experiment/chat/index.page";
 
@@ -18,6 +19,7 @@ export interface IInferenceWarning {
   actionTaken: InferenceWarningAction;
   detail: string;
   badString: string;
+  source: "api" | "playground";
 }
 
 export const WarningsPage = () => {
@@ -27,7 +29,16 @@ export const WarningsPage = () => {
   const listItems = instructions
     ?.sort((a, b) => (a.createdAt < b.createdAt ? 1 : -1))
     .map((warning) => ({
-      title: `${warning.type} ${warning.actionTaken} ${warning.model.name}`,
+      title: (
+        <>
+          {warning.type} {warning.actionTaken} {warning.model.name}{" "}
+          {warning.source === "api" ? (
+            <Tag variant="purple" content="API" />
+          ) : (
+            <Tag variant="green" content="Playground" />
+          )}
+        </>
+      ),
       subTitle: warning.detail || "No preview available",
       href: `/audit/warnings/${warning.id}`,
     }));

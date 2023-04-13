@@ -1,5 +1,5 @@
-import styles from './Todo.module.scss'
+import { Tag } from "../Tag/Tag";
 
 export const Todo = () => {
-  return <aside className={styles.todo}>Preview</aside>;
+  return <Tag variant="yellow" content="Preview" />;
 };

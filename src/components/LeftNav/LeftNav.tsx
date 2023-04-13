@@ -58,7 +58,7 @@ const navStructure: NavStructure = [
         label: "Enrichment",
         todo: true,
       },
-      { path: "/api", icon: <CodeIcon />, label: "APIs", todo: true },
+      { path: "/api", icon: <CodeIcon />, label: "APIs" },
     ],
   },
   {
@@ -79,7 +79,7 @@ const navStructure: NavStructure = [
         label: "Fine-Tuning",
         todo: true,
       },
-      { path: "/api", icon: <CodeIcon />, label: "APIs", todo: true },
+      { path: "/api", icon: <CodeIcon />, label: "APIs" },
     ],
   },
   {
@@ -98,12 +98,6 @@ const navStructure: NavStructure = [
         label: "Instruction",
       },
       {
-        path: "/api",
-        icon: <CodeIcon />,
-        label: "APIs",
-        todo: true,
-      },
-      {
         path: "/rlhf",
         icon: <LikeIcon />,
         label: "RLHF",
@@ -113,6 +107,11 @@ const navStructure: NavStructure = [
         path: "/warnings",
         icon: <ErrorIcon />,
         label: "Warnings",
+      },
+      {
+        path: "/api",
+        icon: <CodeIcon />,
+        label: "APIs",
       },
     ],
   },

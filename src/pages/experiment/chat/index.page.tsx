@@ -1,6 +1,7 @@
 import { List } from "@/components/List/List";
 import { Page } from "@/components/Page/Page";
 import { PageHeader } from "@/components/PageHeader/PageHeader";
+import { Tag } from "@/components/Tag/Tag";
 import { useRequest } from "@/lib/useRequest";
 
 export interface IProfile {
@@ -31,6 +32,7 @@ export interface ISession {
   createdAt: string;
   updatedAt: string;
   type: "chat" | "instruction";
+  source: "api" | "playground";
 }
 
 export const ChatsPage = () => {
@@ -38,7 +40,16 @@ export const ChatsPage = () => {
   const listItems = chats
     ?.sort((a, b) => (a.updatedAt < b.updatedAt ? 1 : -1))
     .map((chat) => ({
-      title: chat.name,
+      title: (
+        <>
+          {chat.name}{" "}
+          {chat.source === "api" ? (
+            <Tag variant="purple" content="API" />
+          ) : (
+            <Tag variant="green" content="Playground" />
+          )}
+        </>
+      ),
       subTitle: chat.description || "No preview available",
       href: `/experiment/chat/${chat.id}`,
     }));
