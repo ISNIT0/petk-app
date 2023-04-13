@@ -14,7 +14,6 @@ import {
 } from "@/components/InferenceSettings/InferenceSettings";
 import DotLoader from "react-spinners/DotLoader";
 import { IInference, ISession } from "@/pages/experiment/chat/index.page";
-import { ITool } from "@/pages/prompts/tools.page";
 
 interface IInferenceResponse {
   sessionId: string;
@@ -30,6 +29,7 @@ export const SessionPage = ({
   sessionId: string;
   readOnly?: boolean;
 }) => {
+  const [lastInferenceId, setLastInferenceId] = useState<string>("");
   const router = useRouter();
   const inferencesContainerElRef = useRef<HTMLDivElement | null>();
 
@@ -41,7 +41,8 @@ export const SessionPage = ({
     });
 
   const { data: session, refetch: refetchSession } = useRequest<ISession>(
-    `/session/${sessionType}/${sessionId}`,
+    `/session/${sessionType}/${sessionId}`, // TODO: long-polling (or better yet, live-streaming)
+    // `/session/${sessionType}/${sessionId}?lastInferenceId=${lastInferenceId}`,
     "GET",
     undefined,
     sessionId === "new"
@@ -88,6 +89,9 @@ export const SessionPage = ({
       top: inferencesContainerElRef.current.scrollHeight,
       behavior: "smooth",
     });
+    if (session?.inferences) {
+      setLastInferenceId(session.inferences[session.inferences.length - 1].id);
+    }
   }, [session?.inferences.length]);
 
   return (

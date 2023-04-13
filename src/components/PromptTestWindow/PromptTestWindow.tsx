@@ -29,6 +29,7 @@ export const PromptTestWindow = ({
     "succeeded"
   );
   const { data: models } = useRequest<IModel[]>(`/model/all`);
+  const { data: tools } = useRequest<IModel[]>(`/tool/all`);
   const inferencesContainerElRef = useRef<HTMLDivElement | null>();
 
   const defaultModel = models?.find((model) => model.isDefault) || models?.[0];
@@ -55,13 +56,14 @@ export const PromptTestWindow = ({
           temperature,
           maxTokens,
           stopSequence,
+          tools: tools?.map((tool) => tool.id) || [],
         } as ITestInferenceSettings)
         .json();
       setInferences((inferences) => [...inferences, inference]);
       setStatus("succeeded");
       (ev.target as HTMLFormElement).querySelector("textarea")!.value = "";
     },
-    [inferenceSettings, maxTokens, stopSequence, temperature, template]
+    [inferenceSettings, maxTokens, stopSequence, temperature, template, tools]
   );
 
   return (

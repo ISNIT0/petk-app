@@ -3,6 +3,7 @@ import cx from "classnames";
 import { useRequest } from "@/lib/useRequest";
 import { useEffect } from "react";
 import { ITool } from "@/pages/prompts/tools.page";
+import { Todo } from "../Todo/Todo";
 
 export interface IInferenceSettings {
   model?: string;
@@ -151,6 +152,16 @@ export const InferenceSettings = ({
           )}
         </select>
       ) : null}
+      <select>
+        <option selected>All Tools</option>
+        {tools?.map((tool) => {
+          return (
+            <option disabled key={tool.id}>
+              {tool.integration.name}
+            </option>
+          );
+        })}
+      </select>
       {setIsRaw ? (
         <div className="form-group">
           <input
