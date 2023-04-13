@@ -1,6 +1,13 @@
 import { EmptyStatePage } from "@/components/EmptyStatePage/EmptyStatePage";
+import { useRouter } from "next/router";
+import { useEffect } from "react";
 
 export const AuditHomePage = () => {
+  const router = useRouter();
+  useEffect(() => {
+    router.replace("/audit/chat");
+  }, [router]);
+
   return (
     <EmptyStatePage
       title="Full Auditing"
