@@ -8,8 +8,8 @@ const configs = {
     origin: 'http://localhost:3001/api',
   },
   production: {
-    apiUrl: 'https://api.alphaiota.io',
-    origin: 'https://alphaiota.io/api',
+    apiUrl: process.env.API_HOST || 'https://api.alphaiota.io',
+    origin: process.env.HOST || 'https://alphaiota.io/api',
   },
 }
 
