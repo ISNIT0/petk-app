@@ -11,6 +11,11 @@ export const MarketplacePage = () => {
       href: "/models/marketplace/openai",
     },
     {
+      title: "Conjecture",
+      subTitle: "Connect Conjecture Chonk-V4 Model",
+      href: "/models/marketplace/conjecture",
+    },
+    {
       title: (
         <>
           Anthropic <Todo />

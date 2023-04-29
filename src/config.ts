@@ -1,7 +1,7 @@
 const configs = {
   development: {
-    apiUrl: 'http://localhost:3000',
-    origin: 'http://localhost:3001/api',
+    apiUrl: 'http://localhost:1337',
+    origin: 'http://localhost:1338/api',
   },
   test: {
     apiUrl: 'http://localhost:3000',
