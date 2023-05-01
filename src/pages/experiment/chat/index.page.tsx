@@ -13,6 +13,10 @@ export interface IProfile {
 export interface IInferenceRating {
   rating: number;
   context: { email: string };
+  inference: IInference;
+
+  createdAt: string;
+  updatedAt: string;
 }
 
 export interface IInference {

@@ -101,7 +101,6 @@ const navStructure: NavStructure = [
         path: "/rlhf",
         icon: <LikeIcon />,
         label: "RLHF",
-        todo: true,
       },
       {
         path: "/warnings",
