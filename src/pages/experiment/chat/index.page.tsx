@@ -10,6 +10,11 @@ export interface IProfile {
   avatarUrl: string;
 }
 
+export interface IInferenceRating {
+  rating: number;
+  context: { email: string };
+}
+
 export interface IInference {
   id: string;
   createdAt: string;
@@ -22,6 +27,7 @@ export interface IInference {
   profile?: IProfile;
   toolProfile?: { name: string; provider: string; avatarUrl: string };
   session?: ISession;
+  ratings: IInferenceRating[];
 }
 
 export interface ISession {

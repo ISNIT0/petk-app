@@ -122,6 +122,11 @@ button,
   border: none;
   cursor: pointer;
 
+  &.secondary {
+    color:#a5adba;
+    background: none;
+  }
+
   &:disabled {
     background-color: #091e420a;
     color: #a5adba;

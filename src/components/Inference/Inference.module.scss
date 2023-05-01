@@ -29,6 +29,12 @@
     font-family: inherit;
     white-space: pre-wrap;
   }
+  .rlhf {
+    padding-left: 10px;
+    button {
+      padding: 0;
+    }
+  }
 }
 
 .profile {
